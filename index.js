@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 80;
 app.listen(port);
 app.set('view engine', 'pug')
 app.set('views', './public/views')
