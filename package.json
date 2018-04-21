@@ -11,5 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nathalie Kroeker (@nrkroeker)",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": "github:nrkroeker/web-fi"
 }
