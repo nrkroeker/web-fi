@@ -1,6 +1,17 @@
 const express = require("express");
 const app = express();
-app.get('/', (req, res) => {
-  res.send('HEYYYYOOOOOOOO!');
+const port = 3000;
+app.listen(port);
+app.set('view engine', 'pug')
+app.set('views', './public/views')
+
+app.get("/", (req, res) => {
+    res.render("index");
 });
-app.listen(3000, () => console.log('Server running on port 3000'));
+
+const routes = ["events", "employees", "pets", "clients", "supplies", "donors"];
+routes.forEach(r => {
+    app.get("/" + r, (req, res) => {
+        res.render(r);
+    })
+});
