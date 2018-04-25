@@ -1,8 +1,10 @@
 import "datatables.net";
 
+console.log("WHAT ABOUT HERE?");
+
 $(document).ready(function() {
+    console.log("WHY");
     $("#pets-table").DataTable({
-        paging: true,
-        pageLength: 2
+        ordering: true
     });
 });

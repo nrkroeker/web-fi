@@ -2,4 +2,20 @@ extends ./shared/layout.pug
 
 block body
     h2 Employees
-    table.table#employees-table
+    table.display.dataTable#employees-table
+        thead
+            tr
+                th ID
+                th Name
+                th Email
+                th Start
+                th Position
+        tbody
+            for e in employees
+                tr
+                    td #{e.PersonID}
+                    td #{e.FirstName} #{e.LastName}
+                    td #{e.Email}
+                    td #{e.StartDate}
+                    td #{e.Position}
+

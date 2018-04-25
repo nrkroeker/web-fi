@@ -1,5 +1,14 @@
 extends ./shared/layout.pug
 
+block head
+    link(rel="stylesheet" href="/css/index.css")
+
 block body
+    script(src="/js/index.js")
+
     h2 Welcome to Floofers, Inc
-    h4 Find the fluffy doofus who's right for you!
+    h4 Helping everyone find their fluffy doofus
+    a.view-link(href="/pets") Pets
+    a.view-link(href="/employees") Employees
+    a.view-link(href="/clients") Clients
+    a.view-link(href="/donors") Donors

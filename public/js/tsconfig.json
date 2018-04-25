@@ -12,8 +12,7 @@
         "noUnusedParameters": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "rootDir": ".",
-        "baseUrl": "."
+
     },
     "compileOnSave": true,
     "buildOnSave": false,

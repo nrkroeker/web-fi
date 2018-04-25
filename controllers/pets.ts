@@ -19,6 +19,7 @@ export default class Pets {
                             console.log("[ERROR]" + err);
                         }
                         res.render("pets", { pets });
+                        db.close();
                     }
                 );
                 req.on("row", (row) => {

@@ -1,11 +1,9 @@
 extends ./shared/layout.pug
 
-block head
-    script(src="js/pets.js")
-
 block body
+    script(src="/js/pets.js")
     h2 Pets
-    table#pets-table
+    table.display.dataTable#pets-table
         thead
             tr
                 th ID
@@ -25,3 +23,4 @@ block body
                     td #{pet.Gender}
                     td #{pet.Birthday}
                     td #{pet.Availability}
+

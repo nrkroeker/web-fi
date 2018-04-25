@@ -19,7 +19,7 @@
     "buildOnSave": false,
     "exclude": [
         "node_modules",
-        "public/*"
+        "public/js/*"
     ],
     "atom": {
         "rewriteTsconfig": false

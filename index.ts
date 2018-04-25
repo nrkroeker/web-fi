@@ -1,8 +1,6 @@
 import * as express from "express";
-import * as bodyParser from "bodyParser";
 import * as tds from "tedious";
 import * as fs from "fs-extra";
-import Pets from "./controllers/pets.js";
 
 class App {
     private config: tds.ConnectionConfig;
@@ -26,31 +24,23 @@ class App {
         app.set('views', './public/views');
         app.use(express.static('public'));
         
-        
-        const routes: string[] = ["/employees", "/events", "/index", "/clients", "/donors", "/pets", "/supplies"];
+        const routes: string[] = ["/employees", "/events", "/clients", "/donors", "/pets", "/supplies"];
         const controllers: {[key: string]: any} = {};
         routes.forEach(async r => {
             controllers[r] = new (require("./controllers" + r + ".js").default)();
         });
-
-        // Middleware function to get controller data
-        // app.use(async (req, res, next) => {
-        //     if (controllers[req.originalUrl]) {
-        //         const data: any = await controllers[req.originalUrl].getAll(this.db);
-        //         req.data = data;
-        //     }
-        //     next();
-        // });
        
         app.get("/", (req, res) => {
             res.render("index");
         });
+
+        app.get("/index", (req, res) => {
+            res.render("index");
+        });
         
-        const petsController = new Pets();
         routes.forEach(r => {
             app.get(r, (req, res) => {
-                // res.render(r, req.data);
-                petsController.getAll(this.config, res);
+                controllers[r].getAll(this.config, res);
             });
         });
 
@@ -61,4 +51,3 @@ class App {
 const app = new App();
 app.main().then(() => { })
     .catch(err => console.error(err));
-});
