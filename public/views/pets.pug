@@ -1,3 +1,27 @@
 extends ./shared/layout.pug
 
+block head
+    script(src="js/pets.js")
+
 block body
+    h2 Pets
+    table#pets-table
+        thead
+            tr
+                th ID
+                th Name
+                th Species
+                th Breed
+                th Sex
+                th Birthday
+                th Availability
+        tbody
+            for pet in pets
+                tr
+                    td #{pet.Id}
+                    td #{pet.Name}
+                    td #{pet.Species}
+                    td #{pet.Breed}
+                    td #{pet.Gender}
+                    td #{pet.Birthday}
+                    td #{pet.Availability}
