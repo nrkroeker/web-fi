@@ -1,8 +1,34 @@
 doctype html
+
+mixin script()
+    script
+        block
+
 html
     head
         meta(charset="utf-8")
         title Floofers, Inc
+        link(rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css")
         block head
     body
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system.js")
+        -
+            const map = {
+                "datatables.net": "https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js",
+                "datatables.net-buttons": "https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js",
+                "datatables.net-buttons-bs": "https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap.min.js ",
+                "datatables.net-buttons-html5": "https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js",
+                "datatables.net-buttons-print": "https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js",
+                "es6-shim": "https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js",
+                "jquery": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+                "jquery-ui": "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+            };
+            const systemJSConfig = {
+                baseURL: "/js/", 
+                map
+            };
+        +script()
+            | SystemJS.config(!{JSON.stringify(systemJSConfig)});
         block body

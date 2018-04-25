@@ -1,3 +1,23 @@
 extends ./shared/layout.pug
 
 block body
+    h2 Clients
+    table.display.dataTable#clients-table
+        thead
+            tr
+                th ID
+                th Name
+                th Phone
+                th Email
+                th Background Check?
+                th Application?
+        tbody
+            for c in clients
+                tr
+                    td #{c.PersonID}
+                    td #{c.FirstName} #{c.LastName}
+                    td #{c.Phone}
+                    td #{c.Email}
+                    td #{c.BackgroundCheck}
+                    td #{c.Application}
+
