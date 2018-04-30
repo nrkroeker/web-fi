@@ -4,11 +4,64 @@ block head
     link(rel="stylesheet" href="/css/index.css")
 
 block body
-    script(src="/js/index.js")
-
-    h2 Welcome to Floofers, Inc
-    h4 Helping everyone find their fluffy doofus
-    a.view-link(href="/pets/list") Pets
-    a.view-link(href="/employees/list") Employees
-    a.view-link(href="/clients/list") Clients
-    a.view-link(href="/donors/list") Donors
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Home
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Home
+                        li.breadcrumb-item.active Dashboard
+            div.row
+                div.col-12
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title Floofers, Inc Management
+                                h6.card-subtitle A pet shelter for all species and breeds.
+                                p Our Mission: To help anyone find the fluffy doofus who's right for them!
+            div.row
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/pets/list") Pets
+                                h6.card-subtitle View and manage all shelter pets
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/clients/list") Clients
+                                h6.card-subtitle View and manage all foster parents/adopters
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/employees/list") Employees
+                                h6.card-subtitle View and manage all shelter employees
+            div.row
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/supplies/list") Supplies
+                                h6.card-subtitle View and manage all shelter supplies
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/donors/list") Donors
+                                h6.card-subtitle View and manage all donors and their donations
+                div.col-4
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                h4.card-title
+                                    a(href="/events/list") Events
+                                h6.card-subtitle View and manage all events run by the shelter
