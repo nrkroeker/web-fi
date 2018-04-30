@@ -1,4 +1,5 @@
 node_modules/
+forever.log
 config/
 .eslintrc
 *.js
