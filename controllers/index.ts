@@ -1,6 +1,5 @@
-import * as tds from "tedious";
+import Controller from "./controller.js";
 
-export default class Index {
-    static getAll(db: tds.Connection): any {
-    }
+export default class Index extends Controller {
+    
 }

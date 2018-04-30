@@ -7,28 +7,67 @@ mixin script()
 html
     head
         meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="ID=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet" href="/css/template/bootstrap.min.css")
+        link(rel="stylesheet" type="text/css" href="/css/template/style.css")
+        link(rel="stylesheet" type="text/css" href="/css/template/blue.css" id="theme")
+        link(rel="stylesheet" type="text/css" href="/css/list.css")
         title Floofers, Inc
-        link(rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css")
         block head
-    body
+    body.fix-header.fix-sidebar.card-no-border
         script(src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.3/system.js")
-        -
-            const map = {
-                "datatables.net": "https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js",
-                "datatables.net-buttons": "https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js",
-                "datatables.net-buttons-bs": "https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap.min.js ",
-                "datatables.net-buttons-html5": "https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js",
-                "datatables.net-buttons-print": "https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js",
-                "es6-shim": "https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js",
-                "jquery": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
-                "jquery-ui": "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-            };
-            const systemJSConfig = {
-                baseURL: "/js/", 
-                map
-            };
-        +script()
-            | SystemJS.config(!{JSON.stringify(systemJSConfig)});
-        block body
+        div.preloader
+            svc.circular(viewBox="25 25 50 50")
+                circle.path(cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10")
+        div#main-wrapper
+            header.topbar
+                nav.navbar.top-navbar.navbar-toggleable-sm.navbar-light
+                    div.navbar-header
+                        a.navbar-brand(href="/index")
+                            i.fa.fa-paw(aria-hidden="true")
+                            span   FLOOFERS, INC
+                    div.navbar-collapse
+                        ul.navbar-nav.mr-auto.mt-md-0
+                            li.nav-item
+                                a.nav-link.nav-toggler.hidden-md-up.text-muted.waves-effect.waves-dark(href="javascript:void(0)")
+                                    i.mdi.mdi-menu
+            aside.left-sidebar
+                div.scroll-sidebar
+                    nav.sidebar-nav
+                        ul#sidebarnav
+                            li
+                                a.waves-effect.waves-dark(href="/index" aria-expanded="false")
+                                    i.mdi.mdi-gauge
+                                    span.hide-menu Dashboard
+                            li
+                                a.waves-effect.waves-dark(href="/pets/list") 
+                                    i.fa.fa-paw(aria-hidden="true")
+                                    span.hide-menu Pets
+                            li
+                                a.waves-effect.waves-dark(href="/clients/list")
+                                    i.mdi.mdi-account-multiple
+                                    span.hide-menu Clients
+                            li
+                                a.waves-effect.waves-dark(href="/employees/list")
+                                    i.mdi.mdi-account-box
+                                    span.hide-menu Employees
+                            li
+                                a.waves-effect.waves-dark(href="/supplies/list")
+                                    i.mdi.mdi-package-variant
+                                    span.hide-menu Supplies
+                            li
+                                a.waves-effect.waves-dark(href="/donors/list")
+                                    i.mdi.mdi-gift
+                                    span.hide-menu Donors
+                            li
+                                a.waves-effect.waves-dark(href="/events/list")
+                                    i.mdi.mdi-calendar
+                                    span.hide-menu Events           
+            block body
+        script(src="/js/template/jquery.slimscroll.js")
+        script(src="/js/template/waves.js")
+        script(src="/js/template/sidebarmenu.js")
+        script(src="/js/template/custom.min.js")

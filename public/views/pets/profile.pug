@@ -1,0 +1,82 @@
+extends ../shared/layout.pug
+
+block head
+    link(rel="stylesheet" href="/css/profile/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/profile/style.css")
+    link(rel="stylesheet" type="text/css" href="/css/profile/blue.css" id="theme")
+block body                               
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Profile
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Pets
+                        li.breadcrumb-item.active Profile
+            div.row
+                div.col-lg-4.col-xlg-3.col-md-5
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                - var imgSrc = "/img/pets/" + PetID + ".jpg"
+                                img.img-circle(src=imgSrc width="150")
+                                h4.card-title.m-t-10 #{PetID} | #{PetName}
+                                h6.card-subtitle #{Description}
+                                div.row.text-center.justify-content-md-center
+                                    div.col-4
+                                        font.font-medium #{Species}
+                                    div.col-4
+                                        font.font-medium #{Breed}
+                div.col-lg-8.col-xlg-9.col-md-7
+                    div.card
+                        div.card-block
+                            form.form-horizontal.form-material
+                                div.form-group
+                                    label.col-md-12(for="name") Name
+                                    div.col-md-12
+                                        input.form-control.form-control-line(type="text" placeholder=PetName name="name")
+                                div.form-group
+                                    label.col-md-12(for="arrival-date") Arrival Date
+                                    div.col-md-12
+                                        input.form-control(type="text" name="arrival-date" placeholder=ArrivalDate)
+                                div.form-group
+                                    label.col-md-12(for="breed") Breed
+                                    div.col-md-12
+                                        input.form-control(type="text" name="breed" placeholder=Breed)
+                                div.form-group
+                                    label.col-md-12(for="species") Species
+                                    div.col-md-12
+                                        input.form-control(type="text" name="species" placeholder=Species)
+                                div.form-group
+                                    label.col-md-12(for="color") Coloring
+                                    div.col-md-12
+                                        input.form-control(type="text" name="color" placeholder=Coloring)
+                                div.form-group
+                                    label.col-md-12(for="sex") Sex
+                                    div.col-md-12
+                                        input.form-control(type="text" name="sex" placeholder=Sex)
+                                div.form-group
+                                    label.col-md-12(for="weight") Weight
+                                    div.col-md-12
+                                        input.form-control(type="text" name="weight" placeholder=Weight)
+                                div.form-group
+                                    label.col-md-12(for="birthday") Birthday
+                                    div.col-md-12
+                                        input.form-control(type="text" name="birthday" placeholder=Birthday)
+                                div.form-group
+                                    label.col-md-12(for="special-needs") Special Needs?
+                                    div.col-md-12
+                                        input.form-control(type="text" name="special-needs" placeholder=SpecialNeeds)
+                                div.form-group
+                                    label.col-md-12(for="spay-neuter") Spayed/Neutered ?
+                                    div.col-md-12
+                                        input.form-control(type="text" name="spay-neuter" placeholder=SpayNeuter)
+                                div.form-group
+                                    label.col-md-12(for="availability") Availability
+                                    div.col-md-12
+                                        input.form-control(type="text" name="availability" placeholder=Availability)
+                                div.form-group
+                                    label.col-md-12(for="description") Description
+                                    div.col-md-12
+                                        input.form-control(type="text" name="description" placeholder=Description)

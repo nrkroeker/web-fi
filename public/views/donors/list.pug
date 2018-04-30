@@ -1,0 +1,32 @@
+extends ../shared/layout.pug
+
+block body                              
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Donors
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Donors
+                        li.breadcrumb-item.active List
+            div.row
+                div.col-lg-12
+                    div.card
+                        div.card-block
+                            div.table-responsive
+                                table.table
+                                    thead
+                                        tr
+                                            th.mdl-data-table__cell--non-numeric ID
+                                            th.mdl-data-table__cell--non-numeric Name
+                                            th.mdl-data-table__cell--non-numeric Business
+
+                                    tbody
+                                        for d in donors
+                                            tr
+                                                td.mdl-data-table__cell--non-numeric #{d.PersonID}
+                                                td.mdl-data-table__cell--non-numeric #{d.FirstName} #{d.LastName}
+                                                td.mdl-data-table__cell--non-numeric #{d.BusinessName}
+
+

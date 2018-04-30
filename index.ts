@@ -1,12 +1,16 @@
 import * as express from "express";
 import * as tds from "tedious";
 import * as fs from "fs-extra";
+import Controller from "./controllers/controller.js";
 
 class App {
     private config: tds.ConnectionConfig;
+    private routes: string[] = [];
+    private controllers: {[key:string]: Controller}[] = [];
 
     public async main(): Promise<void> {
         await this.initConfig();
+        await this.buildRoutes("./public/views");
         await this.initServer();
     }
 
@@ -15,7 +19,29 @@ class App {
         this.config = JSON.parse(config);
     }
 
-    
+    public async buildRoutes(dir: string, path?: string) {
+        if (path) dir += path;
+        let routesMaybe: string[] = await fs.readdirSync(dir);
+        routesMaybe.forEach(async r => {
+            r = "/" + r;
+            if (r.endsWith(".pug")) {
+                r = r.slice(0, -4);
+                if (path) r = path + r;
+                this.routes.push(r);
+                fs.stat("./controllers/" + r + ".js", (err) => {
+                    if (!!err) {
+                        if (err.code !== "ENOENT") console.log(err);
+                    } else {
+                        this.controllers[r] = new (require("./controllers" + r + ".js").default)();
+                    }
+                });
+            } else {
+                await this.buildRoutes("./public/views", r);
+            }
+        });
+    }
+
+
     public async initServer(): Promise<void> {
         const app: express.Express = express();
         const port: number = 3000;
@@ -23,12 +49,6 @@ class App {
         app.set('view engine', 'pug');
         app.set('views', './public/views');
         app.use(express.static('public'));
-        
-        const routes: string[] = ["/employees", "/events", "/clients", "/donors", "/pets", "/supplies"];
-        const controllers: {[key: string]: any} = {};
-        routes.forEach(async r => {
-            controllers[r] = new (require("./controllers" + r + ".js").default)();
-        });
        
         app.get("/", (req, res) => {
             res.render("index");
@@ -38,9 +58,9 @@ class App {
             res.render("index");
         });
         
-        routes.forEach(r => {
+        this.routes.forEach(r => {
             app.get(r, (req, res) => {
-                controllers[r].getAll(this.config, res);
+                this.controllers[r].render(this.config, req, res);
             });
         });
 

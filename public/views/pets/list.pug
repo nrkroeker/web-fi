@@ -1,0 +1,38 @@
+extends ../shared/layout.pug
+
+block body
+    script(src="/js/pets-list.js")                             
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Pets
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Pets
+                        li.breadcrumb-item.active List
+            div.row
+                div.col-lg-12
+                    div.card
+                        div.card-block
+                            div.table-responsive
+                                table.table
+                                    thead
+                                        tr
+                                            th.mdl-data-table__cell--non-numeric ID
+                                            th.mdl-data-table__cell--non-numeric Name
+                                            th.mdl-data-table__cell--non-numeric Species
+                                            th.mdl-data-table__cell--non-numeric Breed
+                                            th.mdl-data-table__cell--non-numeric Sex
+                                            th.mdl-data-table__cell--non-numeric Birthday
+                                            th.mdl-data-table__cell--non-numeric Availability
+                                    tbody
+                                        for pet in pets
+                                            tr.pet-row(data-id=pet.Id)
+                                                td.mdl-data-table__cell--non-numeric #{pet.Id}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Name}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Species}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Breed}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Gender}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Birthday}
+                                                td.mdl-data-table__cell--non-numeric #{pet.Availability}

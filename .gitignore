@@ -2,5 +2,7 @@ node_modules/
 config/
 .eslintrc
 *.js
+!./index.js
+!public/**/*.js
 *.js.map
 .vscode/*
