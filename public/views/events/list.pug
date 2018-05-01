@@ -1,0 +1,34 @@
+extends ../shared/layout.pug
+
+block body
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Events
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Events
+                        li.breadcrumb-item.active List
+            div.row
+                div.col-lg-12
+                    div.card
+                        div.card-block
+                            div.table-responsive
+                                table.table
+                                    thead
+                                        tr
+                                            th.mdl-data-table__cell--non-numeric ID
+                                            th.mdl-data-table__cell--non-numeric Name
+                                            th.mdl-data-table__cell--non-numeric Type
+                                            th.mdl-data-table__cell--non-numeric Location
+                                            th.mdl-data-table__cell--non-numeric Start Time
+                                    tbody
+                                        for e in events
+                                            tr
+                                                td.mdl-data-table__cell--non-numeric #{e.EventID}
+                                                td.mdl-data-table__cell--non-numeric #{e.Name}
+                                                td.mdl-data-table__cell--non-numeric #{e.Type}
+                                                td.mdl-data-table__cell--non-numeric #{e.Location}
+                                                td.mdl-data-table__cell--non-numeric #{e.StartTime}
+

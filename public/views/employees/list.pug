@@ -1,6 +1,7 @@
 extends ../shared/layout.pug
 
 block body
+    script(src="/js/employees-list.js")
     div.page-wrapper
         div.container-fluid
             div.row.page-titles
@@ -25,7 +26,7 @@ block body
                                             th.mdl-data-table__cell--non-numeric Position
                                     tbody
                                         for e in employees
-                                            tr
+                                            tr.employee-row(data-id=e.PersonID)
                                                 td.mdl-data-table__cell--non-numeric #{e.PersonID}
                                                 td.mdl-data-table__cell--non-numeric #{e.FirstName} #{e.LastName}
                                                 td.mdl-data-table__cell--non-numeric #{e.Email}

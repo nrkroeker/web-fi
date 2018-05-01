@@ -31,14 +31,13 @@ export default class Profile extends Controller {
                 req.on("row", (row) => {
                     let temp: { [key: string]: any } = {};
                     for (const key in row) {
-                        if (key === "ArrivalDate") {
+                        if (key === "ArrivalDate" || key === "Birthday") {
                             const arrDate: Date = new Date(row[key].value);
                             temp[key] = arrDate.getMonth() + "/" + arrDate.getDate() + "/" + arrDate.getFullYear();
                         } else if (key === "Sex") {
                             temp[key] = Gender[row[key].value];
-                        } else if (key === "Birthday") {
-                            const arrDate: Date = new Date(row[key].value);
-                            temp[key] = arrDate.getMonth() + "/" + arrDate.getDate() + "/" + arrDate.getFullYear();
+                        } else if (key === "SpayNeuter" || key === "SpecialNeeds") {
+                            temp[key] = (row[key].value) ? "Yes" : "No";
                         } else {
                             temp[key] = row[key].value;
                         }

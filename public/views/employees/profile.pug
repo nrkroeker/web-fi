@@ -1,0 +1,83 @@
+extends ../shared/layout.pug
+
+block head
+    link(rel="stylesheet" href="/css/profile/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/profile/style.css")
+    link(rel="stylesheet" type="text/css" href="/css/profile/blue.css" id="theme")
+block body                               
+    div.page-wrapper
+        div.container-fluid
+            div.row.page-titles
+                div.col-md-5.col-8.align-self-center
+                    h3.text-themecolor.m-b-0.m-t-0 Profile
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href="javascript:void(0)") Employees
+                        li.breadcrumb-item.active Profile
+            div.row
+                div.col-lg-4.col-xlg-3.col-md-5
+                    div.card
+                        div.card-block
+                            center.m-t-30
+                                - var imgSrc = "/img/employees/" + PersonID + ".jpg"
+                                img.img-circle(src=imgSrc width="150")
+                                h4.card-title.m-t-10 #{PersonID} | #{FirstName} #{LastName}
+                                h6.card-subtitle #{Title}
+                                div.row.text-center.justify-content-md-center
+                                    div.col-4
+                                        font.font-medium #{StartDate}
+                                    div.col-4
+                                        font.font-medium #{EndDate}
+                div.col-lg-8.col-xlg-9.col-md-7
+                    div.card
+                        div.card-block
+                            form.form-horizontal.form-material
+                                div.form-group
+                                    label.col-md-12(for="name") Name
+                                    div.col-md-12
+                                        - var name = FirstName + " " + LastName;
+                                        input.form-control.form-control-line(type="text" placeholder=name name="name")
+                                div.form-group
+                                    label.col-md-12(for="position") Position
+                                    div.col-md-12
+                                        input.form-control(type="text" name="position" placeholder=Title)
+                                div.form-group
+                                    label.col-md-12(for="email") Email
+                                    div.col-md-12
+                                        input.form-control(type="email" name="email" placeholder=Email)
+                                div.form-group
+                                    label.col-md-12(for="phone") Phone
+                                    div.col-md-12
+                                        input.form-control(type="phone" name="phone" placeholder=Phone)
+                                div.form-group
+                                    label.col-md-12(for="start") Start Date
+                                    div.col-md-12
+                                        input.form-control(type="text" name="start" placeholder=StartDate)
+                                div.form-group
+                                    label.col-md-12(for="end") End Date
+                                    div.col-md-12
+                                        input.form-control(type="text" name="end" placeholder=EndDate)
+                                div.form-group
+                                    label.col-md-12(for="salary") Salary
+                                    div.col-md-12
+                                        input.form-control(type="text" name="salary" placeholder=Salary)
+                                div.form-group
+                                    label.col-md-12(for="benefits") Benefits
+                                    div.col-md-12
+                                        input.form-control(type="text" name="birthday" placeholder=Benefits)
+                                div.form-group
+                                    label.col-md-12(for="street") Street Address
+                                    div.col-md-12
+                                        input.form-control(type="text" name="street" placeholder=StreetAddr)
+                                div.form-group
+                                    label.col-md-12(for="city") City
+                                    div.col-md-12
+                                        input.form-control(type="text" name="city" placeholder=City)
+                                div.form-group
+                                    label.col-md-12(for="state") State
+                                    div.col-md-12
+                                        input.form-control(type="text" name="state" placeholder=State)
+                                div.form-group
+                                    label.col-md-12(for="zip-code") Zip Code
+                                    div.col-md-12
+                                        input.form-control(type="text" name="zip-code" placeholder=ZipCode)
