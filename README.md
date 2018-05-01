@@ -14,3 +14,159 @@ This directory handles all frontend files - anything served up to the client.
 - `/js`: contains client side javascript files for any in-page functionality
 - `/views`: contains views written in pug
 - `/css`: contains the files in the template I used, as well as some custom styles to add some additional features
+
+## Additional Queries
+As we didn't have time to add all queries into the website, here are the additional ones for Insert and also Selecting vet records.
+
+### ANIMAL INSERT/SELECT ALL
+When adding new pet, could choose from pre-existing breed or enter new
+Must first get Animal info regardless before insertion into Pet
+```
+--Gets table of breeds/species you could choose from
+SELECT * From Animal 
+
+--Inserting new animal
+INSERT INTO Animal (Species, Breed, Coloring)
+VALUES ('Pig', 'Mini Potbelly', 'Pink')
+
+--Gets new animalID of just inserted. Could probably do in javascript
+SELECT A.AnimalID
+FROM Animal A
+WHERE A.Species = 'Pig' AND A.Breed = 'Mini Potbelly' AND A.Coloring = 'Pink'
+
+--Inserts new Pet
+INSERT INTO Pet (PetName, AnimalID, ArrivalDate, Sex, AprxBDay, Weight, Description, SpecialNeeds, Availability, SpayNeuter)
+VALUES ('Waddles', 6, '2015-07-04', 0, '2013-03-01', 25, 'This beautiful girl would be the welcome addition to any home that wants a different kind of pet',
+0, 'Rescue', 0)
+```
+### CLIENT INSERT
+Get table of addresses to choose from pre-existing (could do checks in Javascript to see if entered address exists though, probably)
+```
+SELECT * From Address
+
+--Enter new address
+INSERT INTO Address (StreetAddr, City, State, ZipCode)
+VALUES ('900 N Meridian St', 'Indianapolis', 'IN', 46202)
+
+--Get address ID of newly entered address
+SELECT A.AddrID
+FROM Address A
+WHERE A.StreetAddr = X AND A.ZipCode = Y
+
+--Want to see if person already exists, if so, choose it from list
+SELECT * From Person
+
+--Insert into parent class of Parent: Person
+INSERT INTO Person (FirstName, LastName, Phone, Email, AddrID)
+VALUES ('Abe', 'Crunkles', '317-834-9612', 'crunklabe@gmail.com', 6)
+
+--Get ID of newly entered person
+SELECT P.PersonID
+FROM Person P
+WHERE P.FirstName = X AND P.LastName = Y AND P.Phone = Z
+
+--Insert into Parent class, with new personID, radio buttons or drop down menu control other two to ensure correct entry.
+INSERT INTO Parent
+VALUES (8, 1, 1)
+
+--Select from current pets to determine which one is being fostered/adopted, click one that is being changed
+SELECT * FROM Pet
+
+--Insert into ParentAnimal, won’t have enddate, don’t need to ask on web page.
+INSERT INTO ParentAnimal
+VALUES (8, 7, '2017-05-25', NULL, 1)
+
+--Update pet to change the availability of selected pet
+UPDATE Pet
+SET Availability = 'Adopted'
+WHERE PetID = 7
+```
+
+### EMPLOYEE INSERT
+```
+SELECT * FROM Position
+--Choose from positions already there or enter new position
+INSERT INTO Position (Title, Salary, Benefits)
+VALUES ('Part-Time', 20000, 'None')
+
+--Get positionID of new insert if needed
+SELECT P.PositionID
+FROM Position P
+WHERE P.Title = X
+
+--Same as with client, get address (new or existing) and person (new/existing)
+SELECT * From Address
+INSERT INTO Address (StreetAddr, City, State, ZipCode)
+VALUES ('900 N Meridian St', 'Indianapolis', 'IN', 46202)
+SELECT * FROM Person
+INSERT INTO Person (FirstName, LastName, Phone, Email, AddrID)
+VALUES ('Abe', 'Crunkles', '317-834-9612', 'crunklabe@gmail.com', 6)
+
+--Insert the new employee
+INSERT INTO Employee
+VALUES (8, 4, '2016-01-04', '2017-10-29')
+```
+
+### DONOR INSERT
+```
+SELECT * FROM Address
+
+--Same as entering other people, get address and person info or insert new
+INSERT INTO Address (StreetAddr, City, State, ZipCode)
+VALUES ('900 N Meridian St', 'Indianapolis', 'IN', 46202)
+SELECT * FROM Person
+INSERT INTO Person (FirstName, LastName, Phone, Email, AddrID)
+VALUES ('Abe', 'Crunkles', '317-834-9612', 'crunklabe@gmail.com', 6)
+
+--Insert new person and business name into donor
+INSERT INTO Donor
+VALUES (8, 'Personal')
+
+--Choose the supply donated, insert into donation and update supply to increase current ---amount of selected Supply
+SELECT * FROM Supply
+INSERT INTO Donation
+VALUES (8, 2, 6.00)
+UPDATE Supply
+SET CurrentAmt = CurrentAmt + 6.00
+WHERE SupplyID = 2
+```
+
+### SUPPLY INSERT
+```
+--Basic insert
+INSERT INTO Supply (CurrentAmt, NeededAmt, CostPerUnit, Name)
+VALUES (32.00, 59.00, 21.20, 'Dog Food: Large Bags')
+```
+
+### EVENT INSERT
+```
+--Insert new event
+INSERT INTO Event (Name, Location, Type, Description, StartTime, EndTime)
+VALUES ('Cat Cafe', 'Tails of Our Lives', 'Adoption Drive', 'Take cats to cat cafe for a couple days.', '2017-06-20 09:00:00', '2017-06-21 20:30:00')
+
+--Show employees who could work event
+SELECT E.PersonID, P.FirstName, P.LastName
+FROM Employee E
+INNER JOIN Person P ON E.PersonID = P.PersonID
+
+--Get new event ID
+SELECT E.EventID
+FROM Event E
+WHERE E.Name = X AND E.StartTime = y
+
+--Insert new Worker into event—employee bridge table
+INSERT INTO EventWorker
+VALUES (8, 3)
+```
+
+### SELECT PET VET RECORDS
+```
+SELECT V.AppointmentID, V.PetID, V.Date, V.Cost, Tr.Name, Tr.ReceiptInterval,
+Tr.IntervalType, Person.FirstName, Person.LastName
+FROM VetAppointment V
+INNER JOIN TreatmentAppt T ON V.AppointmentID = T.AppointmentID
+INNER JOIN Treatment Tr ON T.TreatmentId = Tr.TreatmentId
+INNER JOIN Vet ON V.PersonID = Vet.PersonID
+INNER JOIN Person ON Vet.PersonID = Person.PersonID
+WHERE V.PetID = X
+```
